@@ -1,0 +1,325 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{% static 'assets/images/favicon.png' %}"
+      rel="icon"
+      type="image/png"
+    />
+    <title>About</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Links -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}" />
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- Header-->
+    <div class="bg-white py-4 shadow dark:bg-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center lg:justify-between justify-around">
+          <a href="/">
+            <b><h1 style="font-size: 1.5rem">To Do List</h1></b>
+          </a>
+          <div
+            class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm"
+          >
+            <a
+              href="/"
+              class="blue-500 px-6 py-3 text-base shadow font-medium text-white bg-blue-500 bg-opacity-90 rounded-lg hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out focus:ring focus:ring-blue-500"
+              data-ripple-light="true"
+              >Go Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Content-->
+    <div id="wrapper" class="lg:flex flex-col justify-between h-screen">
+      <div>
+        <div class="lg:p-12 max-w-screen-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+          <h1
+            class="text-3xl leading-none text-gray-900 tracking-tight text-center mt-12"
+          >
+            <a class="font-mono">Developers</a>
+          </h1>
+          <br />
+          <hr />
+          <!-- one -->
+          <div
+            class="w-5/6 max-h-lg lg:my-0 ml-8 mx-auto p-6 text-center float-left ml-32"
+          >
+            <div
+              class="w-5/6 max-h-lg bg-black rounded-lg lg:shadow-lg shadow mt-12 float-left"
+            >
+              <div class="h-80 float-left">
+                <img
+                  class="h-80 w-60 object-cover rounded-l-lg"
+                  src="{% static 'images/resources/profile1.jpg' %}"
+                />
+              </div>
+              <div class="h-80 grid grid-cols-2 gap-3 lg:p-6 p-4">
+                <br />
+                <div class="col-span-2 space-x-6">
+                  <label for="about">
+                    <span class="block font-bold font-mono text-2xl text-white"
+                      >김 다 혁</span
+                    >
+                  </label>
+                </div>
+                <div class="col-span-2">
+                  <label for="about">
+                    <span class="block font-mono text-xl text-white"
+                      >91812103</span
+                    >
+                    <span class="block font-mono text-xl text-white"
+                      >Information Protection</span
+                    >
+                  </label>
+                </div>
+                <div class="col-span-2 mt-20">
+                  <label for="">
+                    <span
+                      class="block font-mono text-xl float-left hover:text-gray-400 text-white"
+                      ><a href="https://github.com/JBUkim" target="_blank"
+                        ><ion-icon
+                          name="logo-github"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                    <span
+                      class="block font-mono text-xl float-right hover:text-gray-400 text-white"
+                      ><a href="/about"
+                        ><ion-icon
+                          name="logo-facebook"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                  </label>
+                </div>
+
+                <!-- <div class="bg-gray-10 p-6 pt-0 flex space-x-3">
+                            asdf
+                        </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- two -->
+          <div class="w-96 lg:my-0 ml-4 mx-auto p-6 float-left text-center">
+            <div class="h-92 bg-white rounded-lg lg:shadow-lg shadow mt-12">
+              <div class="h-32">
+                <img
+                  class="h-56 w-full object-cover rounded-t-lg"
+                  src="{% static 'images/resources/profile2.png' %}"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-3 lg:p-6 p-4 mt-24">
+                <div class="col-span-2 space-x-6">
+                  <div class="shrink-0">
+                    <label for="" class="font-bold font-mono text-2xl"
+                      >홍 승 현</label
+                    >
+                  </div>
+                </div>
+
+                <div class="col-span-2">
+                  <label for="about">
+                    <span class="block font-mono text-xl">91813298</span>
+                    <span class="block font-mono text-xl"
+                      >Information Protection</span
+                    >
+                  </label>
+                </div>
+                <br />
+                <div class="col-span-2">
+                  <label for="">
+                    <span
+                      class="block font-mono text-xl float-left hover:text-gray-400"
+                      ><a href="https://github.com/honk0128" target="_blank"
+                        ><ion-icon
+                          name="logo-github"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                    <span
+                      class="block font-mono text-xl float-right hover:text-gray-400"
+                      ><a href="/about"
+                        ><ion-icon
+                          name="logo-facebook"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                  </label>
+                </div>
+
+                <!-- <div class="bg-gray-10 p-6 pt-0 flex space-x-3">
+                            asdf
+                        </div> -->
+              </div>
+              <div class="bg-black text-white rounded-b-lg lg:shadow-lg shadow">
+                -
+              </div>
+            </div>
+          </div>
+          <!-- three -->
+          <div class="w-96 lg:my-0 ml-2 mx-auto p-6 float-left text-center">
+            <div class="h-96 bg-black rounded-t-lg lg:shadow-lg shadow mt-12">
+              <div class="grid grid-cols-2 gap-3">
+                <div
+                  class="h-36 col-span-2 mb-6 items-center space-x-6 bg-violet-700 rounded-t-lg"
+                >
+                  <div class="shrink-0">
+                    <img
+                      class="ml-24 mt-20 h-32 w-32 object-cover rounded-full absolute border-4"
+                      src="{% static 'images/resources/profile3.jpg' %}"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-2">
+                  <label for="about">
+                    <span
+                      class="text-white block font-bold font-mono text-2xl mt-12"
+                      >지 영 욱</span
+                    >
+                  </label>
+                </div>
+
+                <div class="col-span-2">
+                  <label for="about">
+                    <span class="text-white block font-mono text-xl"
+                      >91813157</span
+                    >
+                    <span class="text-white block font-mono text-xl"
+                      >Information Protection</span
+                    >
+                  </label>
+                </div>
+
+                <div class="col-span-2 px-6">
+                  <label for="">
+                    <span
+                      class="text-white block font-mono text-xl float-left hover:text-violet-700"
+                      ><a href="https://github.com/KooSinB" target="_blank"
+                        ><ion-icon
+                          name="logo-github"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+
+                    <span
+                      class="text-white block font-mono text-xl float-right hover:text-violet-700"
+                      ><a href="/about"
+                        ><ion-icon
+                          name="logo-facebook"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                  </label>
+                </div>
+
+                <!-- <div class="bg-gray-10 p-6 pt-0 flex space-x-3">
+                            asdf
+                        </div> -->
+              </div>
+              <div
+                class="bg-violet-700 text-white rounded-b-lg lg:shadow-lg shadow"
+              >
+                -
+              </div>
+            </div>
+          </div>
+          <!-- four -->
+          <div class="w-96 lg:my-0 ml-2 mx-auto p-2 float-left text-center">
+            <div class="h-96 bg-black rounded-t-lg lg:shadow-lg shadow mt-16">
+              <div class="grid grid-cols-2 gap-3">
+                <div
+                  class="p-4 h-40 col-span-2 mb-6 items-center space-x-6 bg-blue-600 rounded-t-lg"
+                >
+                  <div class="shrink-0">
+                    <img
+                      class="h-32 w-32 object-cover rounded-full absolute border-4"
+                      src="{% static 'images/resources/profile4.jpg' %}"
+                    />
+                    <br />
+                    <br />
+                    <label
+                      for=""
+                      class="text-white ml-36 font-bold font-mono text-2xl"
+                      >이 다 연</label
+                    >
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <label for="about">
+                    <span class="text-white block font-mono text-xl"
+                      >91913945</span
+                    >
+                  </label>
+                </div>
+                <div class="col-span-2">
+                  <label for="">
+                    <span class="text-white block font-mono text-xl"
+                      >Information Protection</span
+                    >
+                  </label>
+                </div>
+                <br />
+                <div class="col-span-2 lg:p-6 p-4">
+                  <label for="">
+                    <span
+                      class="text-white block font-mono text-xl float-left hover:text-blue-600"
+                      ><a href="https://github.com/Lrbll/aya"
+                        ><ion-icon
+                          name="logo-github"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                    <span
+                      class="text-white block font-mono text-xl float-right hover:text-blue-600"
+                      ><a href="/about"
+                        ><ion-icon
+                          name="logo-facebook"
+                          size="large"
+                        ></ion-icon></a
+                    ></span>
+                  </label>
+                </div>
+
+                <!-- <div class="bg-gray-10 p-6 pt-0 flex space-x-3">
+                            asdf
+                        </div> -->
+              </div>
+            </div>
+            <div
+              class="bg-blue-600 text-white rounded-b-lg lg:shadow-lg shadow"
+            >
+              -
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+
+      <div class="lg:mb-5 py-6 mt-12 uk-link-reset">
+        <div
+          class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3"
+        >
+          <div class="flex space-x-2 text-gray-700 uppercase">
+            <a href="/about">About</a>
+          </div>
+          <p class="capitalize">© copyright 2022 by Team TODO</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

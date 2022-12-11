@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'images/fav.png' %}" rel="icon" type="image/png">
+    <title>Chatting Room: {{room}} </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Links -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+</head>
+
+  <!-- Header-->
+    <div class="bg-white py-4 shadow dark:bg-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex items-center lg:justify-between justify-around">
+          <a href="/">
+            <b><h1 style="font-size: 1.5rem">To Do List</h1></b>
+          </a>
+          <div
+            class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm"
+          >
+            <a
+              href="/"
+              class="blue-500 px-6 py-3 text-base shadow font-medium text-white bg-blue-500 bg-opacity-90 rounded-lg hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out focus:ring focus:ring-blue-500"
+              data-ripple-light="true"
+              >Go Home</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+<body  class="bg-gray-100">
+
+
+<div class="lg:p-12 max-w-screen-lg lg:my-0 my-12 mx-auto p-6 space-y-0">
+  <h1 class="text-3xl leading-none text-gray-900 tracking-tight mt-3 text-center">
+  <a class="font-mono"> Chatting Room: </a> <b> {{room}} </b> </h1>
+
+  <br>
+  <hr>
+  <div class="bg-white rounded-lg lg:shadow-lg shadow mt-12">
+  <div id="display" class="p-2">
+</div>
+
+<script>
+$(document).ready(function(){
+
+setInterval(function(){
+    $.ajax({
+        type: 'GET',
+        url : "/getMessages/{{room}}/",
+        success: function(response){
+            console.log(response);
+            $("#display").empty();
+            for (var key in response.messages)
+            {
+                var temp="<div class='shadow-inner bg-gray-200 m-3 rounded-lg lg:shadow-lg shadow'><b class='m-2 text-xl font-mono'>"+response.messages[key].user+"</b><p class='mx-2 font-medium'>"+response.messages[key].value+"</p><span class='time-left m-2 text-slate-400'>"+response.messages[key].date+"</span></div>";
+                $("#display").append(temp);
+            }
+        },
+        error: function(response){
+            alert('An error occured')
+        }
+    });
+},1000);
+})
+</script>
+
+
+<div class="p-2 grid place-content-center justify-center">
+    <form id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="username" id="username" value="{{username}}"/>
+        <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
+        <input type="text" name="message" id="message" class=" w-96
+                      rounded-md
+                      border
+                      border-[#E9EDF4]
+                      focus:ring focus:ring-blue-300
+                      py-3 px-5
+                      bg-[#FCFDFE]
+                      text-base text-body-color
+                      placeholder-[#ACB6BE]
+                      outline-none
+                      focus-visible:shadow-none
+                      focus:border-primary
+                      transition" />
+        <input type="submit" value="Send"  class="blue-500 px-6 py-3 text-base
+                            shadow font-medium text-white
+                            bg-blue-500 bg-opacity-90
+                            rounded-lg
+                            hover:bg-opacity-100 hover:text-dark
+                            duration-300
+                            ease-in-out
+                            focus:ring focus:ring-blue-500">
+    </form>
+</div>
+
+</div>
+</div>
+</body>
+
+<script type="text/javascript">
+  $(document).on('submit','#post-form',function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:'/send',
+      data:{
+          username:$('#username').val(),
+          room_id:$('#room_id').val(),
+          message:$('#message').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+         //alert(data)
+      }
+    });
+    document.getElementById('message').value = ''
+  });
+</script>
+
+<!-- Footer -->
+    <div class="lg:mb-5 py-3 uk-link-reset">
+        <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+        <div class="flex space-x-2 text-gray-700 uppercase">
+            <a href="/about">About</a>
+        </div>
+        <p class="capitalize">© copyright 2022 by Team TODO</p>
+        </div>
+        </div>
+    </div>
+
+</html>

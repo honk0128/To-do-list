@@ -1,0 +1,258 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Settings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Links -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}" />
+</head>
+
+    <!-- Header-->
+        <header>
+            <div class="bg-white shadow dark:bg-gray-800">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex -mx-4 items-center justify-end">
+                        <!-- Logo -->  
+                        <div class="px-4 w-60 max-w-full mr-auto px-4">
+                            <a href="/">
+                                <b><h1 style="font-size: 1.5rem">To Do List</h1></b>
+                            </a>
+                        </div>
+
+
+                        
+                        <!-- Search Bar -->
+                        <div class="p-2 hidden sm:flex">
+                            <div class="">
+                                <form action="/search" method="POST">
+                                    {% csrf_token %}
+                                    <div class="">
+                                        <input type="text" name="username" placeholder="Search for username..."
+                                        class="placeholder:italic
+                                        bg-gray-100 border border-slate-300 rounded-md 
+                                        py-2 pl-5 pr-3
+                                        shadow-sm 
+                                        focus:outline-none
+                                        focus:border-sky-300 
+                                        focus:ring-sky-300 focus:ring-1">
+                                        <button type="submit"><i class="fa fa-search fa-1x"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                            
+                        <!-- Upload -->
+                        <div class="p-2 hidden sm:flex">
+                        <a href="#"
+                            class="blue-500 px-6 py-3 text-base
+                            shadow font-medium text-white
+                            bg-blue-500 bg-opacity-90
+                            rounded-lg
+                            hover:bg-opacity-100 hover:text-dark
+                            duration-300
+                            ease-in-out
+                            focus:ring focus:ring-blue-500"
+                            data-ripple-light="true">Upload Pics</a>
+
+                        <!-- upload dropdown box -->
+                        <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small" class="header_dropdown">
+                        <!-- notivication header -->
+                        <div class="px-6 py-4 -mx-5 -mt-4 mb-5 border-b text-xl font-mono text-center">
+                            <h4>Upload Pics</h4>
+                        </div>
+                        <!-- contents -->
+                        <div class="flex justify-center flex-center text-center">
+                            <div class="flex flex-col choose-upload text-center">
+                                <div class="bg-gray-100 border-2 border-dashed flex flex-col h-24 items-center justify-center relative w-full rounded-lg  ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-12">
+                                        <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                    </svg>
+                                </div>
+
+                                <form action="upload" method="POST" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <p class="my-3 leading-6 font-mono"> Upload pics </p>
+                                <div>
+                                    <input type="file" name="image_upload"
+                                        class="block text-lg text-slate-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-blue-50 file:text-blue-700
+                                        hover:file:bg-blue-100" />
+                                    
+                                    <textarea name="caption" placeholder="caption..." rows="5"
+                                    class="block bg-gray-100 w-full border border-slate-300 rounded-md 
+                                    py-2 pl-10 pr-3
+                                    shadow-sm mt-5
+                                    focus:outline-none
+                                    focus:border-sky-300 
+                                    focus:ring-sky-300 focus:ring-1
+                                    placeholder:text-slate-400"> </textarea>
+                                    <br>
+                                    <button type="submit"
+                                    class="blue-500 px-4 py-2 
+                                    text-base
+                                    shadow
+                                    font-medium
+                                    text-white
+                                    bg-blue-500 bg-opacity-90
+                                    rounded-lg
+                                    hover:bg-opacity-100 hover:text-dark
+                                    duration-300
+                                    ease-in-out
+                                    focus:ring 
+                                    focus:ring-blue-500"
+                                    data-ripple-light="true">Upload</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm">
+                            Your Image size Must be Maxmium 999MB
+                        </div>
+                    </div>
+                </div>
+
+                <!-- profile -->
+                    <div class="p-2">
+                        <a href="#">
+                            <img src="{{user_profile.profileimg.url}}" class="h-12 w-12 object-cover rounded-full" alt="">
+                        </a>
+                        <div uk-drop="mode: click;offset:10"
+                        class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100">
+                            <ul>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/settings"> Account Setting</a></li>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/profile/{{user_profile.user.username}}"> Profile </a></li>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/tasks"> To Do List </a></li>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/calendar"> Calendar </a></li>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/chat"> Free Chat </a></li>
+                                <li><a class="flex items-center px-3 py-2 hover:bg-blue-100 hover:text-blue-500 rounded-md" href="/logout"> LogOut </a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </header>
+
+<body class="bg-gray-100">
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+    <!-- Content-->
+    <div> 
+        <div class="lg:p-12 max-w-screen-lg lg:my-0 my-12 mx-auto p-6 space-y-0">
+                <h1 class="text-3xl leading-none text-gray-900 tracking-tight mt-3 text-center"> <a class="font-mono"> Account Setting for </a> 
+                    <b>{{user.username}}</b>
+                </h1>
+                <br>
+                <hr>
+                <div class="bg-white rounded-md lg:shadow-lg shadow mt-12">
+
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                        
+                            <div class="col-span-2 mb-6 flex items-center space-x-6">
+                                <label for="" class="font-mono text-xl">Profile Image</label>
+                                <div class="shrink-0" >
+                                    <img class="h-16 w-16 object-cover rounded-full" 
+                                        src="{{user_profile.profileimg.url}}"/>
+                                </div>
+                                <input type="file" name="image" value="" 
+                                class="block w-full text-sm text-slate-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-blue-50 file:text-blue-700
+                                        hover:file:bg-blue-100">
+                            </div>
+
+                            <div class="col-span-2 mb-6">
+                                <label for="about" >
+                                    <span class="block font-mono text-xl">Bio</span> 
+                                    <textarea id="about" name="bio" rows="5"
+                                    class="block bg-gray-100 w-full border border-slate-300 rounded-md 
+                                    py-2 pl-10 pr-3
+                                    shadow-sm 
+                                    focus:outline-none
+                                    focus:border-sky-300 
+                                    focus:ring-sky-300 focus:ring-1">{{user_profile.bio}}</textarea>
+                                    </label>
+                            </div> 
+
+                            <div class="col-span-2 mb-6">
+                                <label for="">
+                                    <span class="block font-mono text-xl">Location</span> 
+                                    <input type="text" name="location" value="{{user_profile.location}}" 
+                                    class="block bg-gray-100 w-full border border-slate-300 rounded-md 
+                                    py-2 pl-10 pr-3
+                                    shadow-sm 
+                                    focus:outline-none
+                                    focus:border-sky-300 
+                                    focus:ring-sky-300 focus:ring-1">
+                                    </div>
+                            </label>
+                        </div> 
+
+                        <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                            <button class="px-6 py-3 
+                                            text-base
+                                            shadow
+                                            font-medium
+                                            text-red-500
+                                            bg-gray-50 bg-opacity-90
+                                            rounded-lg
+                                            hover:bg-opacity-100 hover:text-dark
+                                            duration-10
+                                            ease-in-out
+                                            focus:ring-2
+                                            focus:ring-red-400"><a href="/">Cancel</a></button>
+                            <button type="submit"
+                            class="blue-500 px-6 py-3 
+                                    text-base
+                                    shadow
+                                    font-medium
+                                    text-white
+                                    bg-blue-500 bg-opacity-90
+                                    rounded-lg
+                                    hover:bg-opacity-100 hover:text-dark
+                                    duration-300
+                                    ease-in-out
+                                    focus:ring 
+                                    focus:ring-blue-500"
+                                    data-ripple-light="true"> Save </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer -->
+
+    <div class="lg:mb-5 py-3 uk-link-reset">
+        <div
+        class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3"
+        >
+        <div class="flex space-x-2 text-gray-700 uppercase">
+            <a href="/about">About</a>
+        </div>
+        <p class="capitalize">© copyright 2022 by Team TODO</p>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>
